@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Numero } from './array.interface';
 import { NumeroModified } from './arrayModified.interface';
+import { ResultadoLabel } from './resultadoLabel.enum';
 
 @Component({
   selector: 'app-root',
@@ -58,16 +59,16 @@ export class AppComponent implements OnInit {
       let label = ''
 
       if (typeof (value) !== 'number') {
-        label = 'idk'
+        label = ResultadoLabel.IDK
       } else {
 
         const isNegative = value < 0
         let tag = ''
 
-        if (value % 3 !== 0 || value % 5 !== 0) tag = 'idk'
-        if (value % 3 === 0) tag = 'fizz'
-        if (value % 5 === 0) tag = 'buzz'
-        if (value % 3 === 0 && value % 5 === 0) tag = 'fizzbuzz'
+        if (value % 3 !== 0 || value % 5 !== 0) tag = ResultadoLabel.IDK
+        if (value % 3 === 0) tag = ResultadoLabel.FIZZ
+        if (value % 5 === 0) tag = ResultadoLabel.BUZZ
+        if (value % 3 === 0 && value % 5 === 0) tag = ResultadoLabel.FIZZBUZZ
         if (isNegative) tag = 'minus' + tag
 
         label = tag
