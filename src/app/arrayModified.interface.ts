@@ -1,6 +1,5 @@
+import { Numero } from "./array.interface";
 
-export interface numeroModified {
-    name: string;
-    number?: number;
+export interface NumeroModified extends Numero {
     newProperty?: string;
 }

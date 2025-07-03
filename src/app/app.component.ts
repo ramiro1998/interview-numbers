@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { numero } from './array.interface';
-import { numeroModified } from './arrayModified.interface';
+import { Numero } from './array.interface';
+import { NumeroModified } from './arrayModified.interface';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +13,7 @@ import { numeroModified } from './arrayModified.interface';
 export class AppComponent implements OnInit {
 
 
-  array: numero[] = [
+  array: Numero[] = [
     {
       name: "Object 1",
       number: 7
@@ -52,37 +52,34 @@ export class AppComponent implements OnInit {
   }
 
 
-  getCriteria(array: numero[]) {
-    array.forEach((element: numeroModified) => {
-      const idk = 'idk'
-      const number3 = 'fizz'
-      const number5 = 'buzz'
+  getCriteria(array: Numero[]): void {
+    array.forEach((element: NumeroModified) => {
+      const value = element.number
+      let label = ''
 
-      const elemento = element.number
+      if (typeof (value) !== 'number') {
+        label = 'idk'
+      } else {
 
-      if (elemento) {
-        if (elemento < 0) {
-          console.log('minus' + idk, element.number)
-          element.newProperty = 'minus' + idk
-        } else if (elemento % 3 === 0 && elemento % 5 === 0) {
-          console.log(number3 + number5, element.number)
-          element.newProperty = number3 + number5
-        } else if (elemento % 3 === 0) {
-          console.log(number3, element.number)
-          element.newProperty = number3
-        } else if (elemento % 5 === 0) {
-          console.log(number5, element.number)
-          element.newProperty = number5
-        } else {
-          console.log(idk, element.number)
-          element.newProperty = idk
-        }
-        return
+        const isNegative = value < 0
+        let tag = ''
+
+        if (value % 3 !== 0 || value % 5 !== 0) tag = 'idk'
+        if (value % 3 === 0) tag = 'fizz'
+        if (value % 5 === 0) tag = 'buzz'
+        if (value % 3 === 0 && value % 5 === 0) tag = 'fizzbuzz'
+        if (isNegative) tag = 'minus' + tag
+
+        label = tag
       }
 
-      console.log(`el elemento ${element.name} no tiene numero`)
-    });
-    console.log('element now', array)
+      element.newProperty = label
+
+      console.log(`elemento con n° ${element.number}: ${label}`)
+
+    })
+
+    console.log('nuevos elementos', array)
   }
 
 }

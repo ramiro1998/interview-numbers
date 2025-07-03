@@ -1,5 +1,5 @@
 
-export interface numero {
+export interface Numero {
     name: string;
     number?: number;
 }
